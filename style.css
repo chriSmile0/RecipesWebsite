@@ -1,0 +1,246 @@
+html {
+    /*background-color:crimson;*/
+	background-color: indianred;
+    opacity:0.9;
+}
+
+* {
+    box-sizing:border-box;
+	color:ivory;
+}
+
+.error {
+    color:red;
+}
+
+body {
+	margin : auto;
+	/*background-color : rgb(212, 155, 81);*/
+	height : auto;
+}
+
+header {
+	margin : auto;
+	/*background-color:  rgb(140, 140, 255);*/
+}
+
+h1 {
+	text-align : center;
+	color : white;
+	font-family : 'Franklin Gothic Medium';
+}
+
+h2,h3,h4 {
+	text-align: center;
+	padding-top : 10px;
+	padding-bottom : 10px;
+	font-family:"Merriweather";
+}
+
+
+nav {
+    display:flex;
+    flex-direction:row;
+    border:solid;
+    border-width:0.2px;
+
+}
+
+nav>a {
+	width: 25%;
+    height:80px;
+    /*background-color:white;*/
+    border:solid;
+    border-width:0.2px;
+    padding-top:30px;
+    padding-bottom:30px;
+    text-align:center;
+    font-size:20px;
+    text-decoration:none;
+    /*opacity:0.9; */
+ }
+
+nav>a:hover{
+	background-color:gray;
+}
+
+
+section {
+	border:solid;
+    border-width:0.0px;
+    text-align:center;
+}
+
+
+aside {
+    width:50%;
+    height:100px;
+    text-align:center;
+	border:solid;
+    border-width:0.2px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    height:auto;
+}
+
+aside>p {
+    border:solid;
+    border-width:0px;
+}
+
+#A1 img, #A2 img {
+	width: 80%;
+	height: 80%;
+	/*width:auto;
+	height:auto;*/
+}
+
+ 
+
+#A3 img {
+    width:140px;
+    height:140px;
+}
+
+
+
+
+div {
+
+}
+
+
+p {
+
+}
+
+span {
+
+}
+
+form {
+    /*background-color:lightgray;*/
+	width:50%;
+    /*opacity:0.9;*/
+	border:solid;
+	text-align:center;
+    border-width:0.2px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    height:auto;
+}
+
+fieldset {
+	border-width: 0.0px;
+}
+
+form div {
+    margin-top:10px;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+}
+
+div label {
+    margin-left:40px;
+    margin-right:50px;
+    float:left;
+    width:35%;
+    text-align:right;
+}
+
+input,textarea,select {
+	color:black;
+	font-size: 15px;
+}
+
+div textarea {
+    margin-top:10px;
+    margin-bottom:10px;
+    width:40%;
+    height:200px;
+}
+
+form button {
+    background-color: indianred;
+    border:solid;
+    border-width:0.2px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    /*color:rgb(0, 0, 0);*/
+	font-size: 18px;
+    height: 40px;
+	width:auto;  
+	font-weight: bold;
+}
+
+
+
+
+#top {
+    /*display:"none";*/
+    flex-direction:row;
+    border:solid;
+    border-width:0.0px;
+    height:50px;
+    width:50px;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    border-radius:50px 50px 50px 50px;
+}
+
+#top>a {
+    border-radius:50px 50px 50px 50px;
+    width:100%;
+    height:100%;
+    background-color:ivory;
+    border:solid;
+    display:none;
+    border-width:0.2px;
+    text-align:center;
+    text-decoration:none;
+    opacity:0.9;
+ }
+
+#top>a>i {
+	font-size:36px;
+	font-weight: bold;
+    padding-top:6px; 
+	color:indianred;
+ }
+
+#top:hover{
+    background-color:gray;
+    opacity:0.8;
+    transition: background-color 0.5s;
+}
+
+footer  {
+    /*background-color:lightblue;*/
+    text-align:center;
+    height:auto;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+footer i {
+    padding-left:10px;
+}
+
+a {
+    color:inherit;
+    z-index:auto;
+}
+
+@media screen and (max-width:600px) {
+	nav {
+        flex-direction:column;
+    }
+    nav>a{
+        width:100%;
+    }
+}
