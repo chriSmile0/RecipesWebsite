@@ -5,9 +5,42 @@
 I wanted to write recipes, with images and an interactive interface. Whether for 2, 4 or 6 people, I want the readers to be able to change the quantities or even choose the additional ingredients in real time.
 
 
-### Render 
-![IMG1](screens/H_A1.png)
-![IMG1](screens/A2_A3.png)
-![IMG1](screens/A3.png)
-![IMG1](screens/A4.png)
-![IMG1](screens/footer.png)
+## Render 
+
+### V1.0
+#### Desktop 
+![IMG1](screens/desktop/A1.png)
+![IMG1](screens/desktop/A2_1.png)
+![IMG1](screens/desktop/A2_2.png)
+![IMG1](screens/desktop/A3_1.png)
+![IMG1](screens/desktop/A3_2.png)
+![IMG1](screens/desktop/A4.png)
+![IMG1](screens/desktop/footer.png)
+
+#### Mobile 
+
+![IMG1](screens/mobile/H_A1_1.png)
+![IMG1](screens/mobile/A1_2.png)
+![IMG1](screens/mobile/A2.png)
+![IMG1](screens/mobile/A3_1.png)
+![IMG1](screens/mobile/A3_2.png)
+![IMG1](screens/mobile/A4.png)
+![IMG1](screens/mobile/footer.png)
+
+
+### Database Managment 
+#### SQLITE3
+- In command line : 
+  - `sqlite3 database.db` -> open the file
+  - `.tables` -> to see the table 
+  - `select/delete/update/etc..` -> basic sql commands
+  
+- In PHP : 
+  - `ìnsert_recipe/ingredient(...)` -> create element in the database
+  - IN command line ->  `php db_usage.php`
+
+- ServorAccess (SOON) and PHP or command line
+- SpecialAccessHidingFile (SOON MAYBE)
+- Like a visitor with the form in the end of the website (NEXT VERSION)
+
+### Features 
