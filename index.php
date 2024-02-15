@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php require 'db_usage.php' ?>
 <html lang="fr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +19,15 @@
 	<header id="H">
         <h2>Les Recettes de Mimi</h2>
         <nav>
-			<a href="#A1">Favoris</a>
-			<a href="#A2">Découvertes</a>
-			<a href="#A3">Mes Ingrédients</a>
-			<a href="#A4">Ta Recette</a>
+			<a href="#HA1">Favoris</a>
+			<a href="#HA2">Découvertes</a>
+			<a href="#HA3">Mes Ingrédients</a>
+			<a href="#HA4">Ta Recette</a>
         </nav>
 	</header>
 
 	<section>
-        <h2>Favoris</h2>
+        <h2 id="HA1">Favoris</h2>
         <article id="A1">
             <div class="container">
 				<aside>
@@ -41,10 +42,10 @@
             	</aside>
 			</div>
         </article>
-        <h2>Découvertes</h2>
+        <h2 id="HA2">Découvertes</h2>
         <article id="A2">
 			<div class="container">
-				<aside>
+				<!--<aside>
 					<h4>La Choucroute</h4>
 					<img src="imgs/choucroute.jpg">
 					<p>
@@ -52,13 +53,14 @@
 						études qui peut se déguster en toute saison car il se décline
 						en plusieurs version.
 					</p>	
-            	</aside>
+            	</aside>-->
+                <?php display_all_recipes();?>
 			</div>
         </article>
-		<h2>Mes Ingrédients</h2>
+		<h2 id="HA3">Mes Ingrédients</h2>
 		<article id="A3">
             <div class="container">
-                <aside>
+                <!--<aside>
                     <h4>Manioc</h4>
                     <img src="imgs/manioc.jpg">
 					<p>
@@ -78,12 +80,13 @@
                     <p>
 						...
                     </p>
-                </aside>
+                </aside>-->
+                <?php display_all_ingredients(); ?>
             </div>
-		<article id="A3">
+        </article>
     </section>
 
-	<h2>Ta Recette</h2>
+	<h2 id="HA4">Ta Recette</h2>
     <form name="contacts" id="A4" method="POST" onsubmit="return verifform(this)">
         <fieldset>
 			<div id="Nom">
@@ -101,13 +104,13 @@
 			<div>
                 <label for="ingredients">Ingrédients</label>
                 <textarea 	name="message"  aria-labelledby="message" 
-							placeholder="Ingrédient1;Ingrédient2">
+							placeholder="Ingrédient1,Ingrédient2">
 				</textarea>
             </div>
 			<div>
                 <label for="prepa">Préparation</label>
                 <textarea 	name="prepa"  aria-labelledby="prepa" 
-							placeholder="Étape1;Étape2">
+							placeholder="Étape1,Étape2">
 				</textarea>
             </div>
 			<div>
@@ -117,7 +120,7 @@
 				</textarea>
             </div>
 			<button name="submitrecette"
-              type="submit" value="EnvoyerRecette">Enregistrer</button>
+                    type="submit" value="EnvoyerRecette">Enregistrer</button>
 		</fieldset>
 	</form>
 
@@ -126,9 +129,9 @@
             <i id="top_a_i" class="material-icons">expand_less</i>
         </a>
     </div>
-
+   
 	<footer>
-        <h3 style="padding-bottom:0px;margin-bottom:0px;">Mes Reseaux Sociaux</h3>
+        <h3 style="padding-bottom:0px;margin-bottom:0px;">Mes Réseaux Sociaux</h3>
         <br>
         <a href="http://www.facebook.com" target="_blank" title="Facebook">
         <!--_blank sert a ouvrir la page facebook sur un autre onglet-->
