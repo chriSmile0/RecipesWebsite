@@ -1,15 +1,11 @@
 html {
-	background-color: indianred;
+	background-color: white;/*indianred;*/
     opacity:0.9;
 }
 
 * {
     box-sizing:border-box;
-	color:ivory;
-}
-
-.error {
-    color:red;
+	color:black;/*ivory;*/
 }
 
 body {
@@ -27,7 +23,7 @@ h1 {
 	font-family : 'Franklin Gothic Medium';
 }
 
-h2,h3,h4 {
+h2, h3, h4 {
     text-transform: capitalize;
 	text-align: center;
 	padding-top : 10px;
@@ -51,7 +47,7 @@ nav {
     border-width:0.2px;
 }
 
-nav>a {
+nav > a {
 	width: 25%;
     height:80px;
     border:solid;
@@ -61,9 +57,9 @@ nav>a {
     text-align:center;
     font-size:20px;
     text-decoration:none;
- }
+}
 
-nav>a:hover{
+nav > a:hover{
 	background-color:gray;
 }
 
@@ -123,7 +119,7 @@ aside > ul.details {
     width: 35%;
 }
 
-aside>p {
+aside > p {
     width:82%;
     display:block;
     margin-left:auto;
@@ -160,14 +156,24 @@ fieldset {
 	border-width: 0.0px;
 }
 
-form div {
+form div > div {
     margin-top:10px;
     margin-bottom:10px;
     display:flex;
     align-items:center;
 }
 
-div label {
+div .error {
+    display:block;
+    width:40%;
+    margin-top:10px;
+    margin-left:auto;
+    margin-right:auto;
+    color:red;
+}
+
+
+div > label {
     margin-left:40px;
     margin-right:50px;
     float:left;
@@ -175,12 +181,13 @@ div label {
     text-align:right;
 }
 
-input,textarea,select {
+input, textarea, select {
 	color:black;
-	font-size: 15px;
+	font-size: 17px;
+    padding: 3px 0px 3px 0px;
 }
 
-div textarea {
+div > textarea {
     margin-top:10px;
     margin-bottom:10px;
     width:40%;
@@ -213,7 +220,7 @@ form button {
     border-radius:50px 50px 50px 50px;
 }
 
-#top>a {
+#top > a {
     border-radius:50px 50px 50px 50px;
     width:100%;
     height:100%;
@@ -226,7 +233,7 @@ form button {
     opacity:0.9;
  }
 
-#top>a>i {
+#top > a > i {
 	font-size:36px;
 	font-weight: bold;
     padding-top:6px; 
@@ -239,7 +246,7 @@ form button {
     transition: background-color 0.5s;
 }
 
-footer  {
+footer {
     text-align:center;
     height:auto;
 	margin-top: 10px;
@@ -259,6 +266,10 @@ a {
     article {
         width:50%;
     }
+
+    div .error {
+        width:100%;
+    }
 }
 
 @media screen and (max-width:1500px) {
@@ -271,6 +282,7 @@ a {
     article {
         width:70%;
     }
+
     form div {
         width:100%;
         margin-top:10px;
@@ -285,6 +297,7 @@ a {
         margin-right:0px;
         width:auto;
     }
+
     form textarea {
         width:100%;
     }
@@ -294,6 +307,7 @@ a {
 	nav {
         flex-direction:column;
     }
+
     nav>a{
         width:100%;
     }
@@ -310,13 +324,13 @@ a {
 
         list-style-type: none;
     }
+
     h5 {
         width:100%;
         margin-left:auto;
         text-align:center;
     }
 
-   
     ul.details {
         width:100%;
         display:block;
@@ -324,6 +338,7 @@ a {
         margin-right:auto;
         text-align:left;
     }
+
     ul.details > li{
         text-align:center;
     }

@@ -74,6 +74,8 @@ function create_table_recette() {
 	}
 }
 
+
+
 function create_table_ingredients() {
 	try {
 		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
