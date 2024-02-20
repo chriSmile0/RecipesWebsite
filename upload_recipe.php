@@ -145,7 +145,6 @@ function image_upload($img) {
 		if( file_exists( $temp_file ) )
 			unlink( $temp_file );
 		$rtn = $target_file;
-		echo "rtn : $rtn \n";
 	}
 	else {
 		// Invalid file

@@ -27,6 +27,15 @@ I wanted to write recipes, with images and an interactive interface. Whether for
 ![IMG1](screens/mobile/A4.png)
 ![IMG1](screens/mobile/footer.png)
 
+### V1.1 
+- Upload Recipe for viewers we want to post recipe 
+- NewRender (but update in next release (form update))
+
+### V1.5 -> next release
+- NoBot process
+- DDOS prevention (banList, etc..)
+- HomePage (NoBot)-> (choice between) MimiRecipes and ViewersRecipe
+
 
 ### Database Managment 
 #### SQLITE3
