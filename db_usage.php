@@ -101,36 +101,6 @@ function create_table_ingredients() {
 	}
 }
 
-
-
-
-
-
-// INSERT RECETTE 
-/*$name = "La Choucroute";
-$ingredients = "Choux,Saucisse";
-$description = "Un plat typique ...";
-$preparation = "Faire cuire le choux,Faire cuire les pommes de terre ";
-$image = "choucroute";
-$price = "20€";
-$nbr_people = 5;
-$author = "moi";
-try {
-	$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
-	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
-	$sql = "INSERT INTO Recette (name, ingredients, description, preparation, image, price, nbr_people, author)
-	VALUES ('$name','$ingredients','$description','$preparation','$image','$price','$nbr_people','$author')";
-	//Reqûete préparer ici avec .prepare();
-	$bdd->exec($sql);
-	echo "insertion ok ";
-}
-catch (PDOException $e) {
-	var_dump($e->getMessage());
-}*/
-
-$bdd = null;
-
-
 function display_recipe($row) {
 	// ($name,$ingredients,$description,$preparation,$image,$price,$nbr_people,$author)";
 	$Output = "<aside><div></div>";
@@ -187,24 +157,13 @@ function display_all_recipes() {
 	try {
 		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
 		$sql = "SELECT * from Recette";
-		//Requête préparer ici aussi avec .prepare();
-		/*$result  = $bdd->query($sql);
-		$row = $result->fetch();
-		var_dump($row);*/
-		// FETCHV1 
 		foreach ($bdd->query($sql) as $row) {
 			echo display_recipe($row);
 		}
-
-		/*$YourInput = "<h4>Vos données de contacts</h4>" ;
-		$nom_donnees = "Nom : " . $row['nom'] . "<br>";
-		$prenom_donnees = "Prenom : " . $row['prenom'] . "<br>";
-		$email_donnees = "Email : " . $row['email'] . "<br>";*/
 	}
 	catch(PDOEXCEPTION $e){
 		var_dump($e->getMessage());
 	}
-	
 }
 
 
@@ -212,19 +171,9 @@ function display_all_ingredients() {
 	try {
 		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
 		$sql = "SELECT * from Ingredients";
-		//Requête préparer ici aussi avec .prepare();
-		/*$result  = $bdd->query($sql);
-		$row = $result->fetch();
-		var_dump($row);*/
-		// FETCHV1 
 		foreach ($bdd->query($sql) as $row) {
 			echo display_ingredient($row);
 		}
-
-		/*$YourInput = "<h4>Vos données de contacts</h4>" ;
-		$nom_donnees = "Nom : " . $row['nom'] . "<br>";
-		$prenom_donnees = "Prenom : " . $row['prenom'] . "<br>";
-		$email_donnees = "Email : " . $row['email'] . "<br>";*/
 	}
 	catch(PDOEXCEPTION $e){
 		var_dump($e->getMessage());
@@ -247,12 +196,6 @@ insert_recette($name,$ingredients,$description,$preparation,$image,$price,$nbr_p
 insert_ingredient("Manioc","manioc.jpg","Ce tubercule issu des terres Américaines trouvent sa place dans les alimentation du monde",1.50,"kg");
 insert_ingredient("Banane Plantain","banane_plantain.jpg","Une banane à cuire une fois très mure une fois d'en apprécier toute la saveur ",2.00,"kg");
 insert_ingredient("Patate Douce","patate_douce.jpg","..",2.00,"kg");*/
-
-
-
-
-// DISPLAY 
-//display_all_recipes();
 
 
 

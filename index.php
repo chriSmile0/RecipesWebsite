@@ -46,42 +46,12 @@
         <h2 id="HA2">Découvertes</h2>
         <article id="A2">
 			<div class="container">
-				<!--<aside>
-					<h4>La Choucroute</h4>
-					<img src="imgs/choucroute.jpg">
-					<p>
-						Un plat typique de la région qui m'a acceuillit pendant
-						études qui peut se déguster en toute saison car il se décline
-						en plusieurs version.
-					</p>	
-            	</aside>-->
                 <?php display_all_recipes();?>
 			</div>
         </article>
 		<h2 id="HA3">Mes Ingrédients</h2>
 		<article id="A3">
             <div class="container">
-                <!--<aside>
-                    <h4>Manioc</h4>
-                    <img src="imgs/manioc.jpg">
-					<p>
-						...
-                    </p>
-                </aside>
-                <aside>
-                    <h4>Banane Plantain</h4>
-					<img src="imgs/banane_plantain.jpg">
-					<p>
-						...
-                    </p>
-                </aside>
-                <aside>
-                    <h4>Patate Douce</h4>
-					<img src="imgs/patate_douce.jpg">
-                    <p>
-						...
-                    </p>
-                </aside>-->
                 <?php display_all_ingredients(); ?>
             </div>
         </article>

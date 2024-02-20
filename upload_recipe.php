@@ -25,13 +25,11 @@ $all_columns_names_recipe = [
 function test_input($data) {
 	// XSS 
     /*$data = htmlspecialchars($data); // not enough */
-	/*echo "data : |$data|\n";
 	$trim_data = trim($data);
     $data = stripslashes($trim_data);
 	// $GLOBALS["___mysqli_ston"]; ? 
 	//$data = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $data) : "Error\n";
-	*/$data = htmlspecialchars($data);
-	echo "exit data : |$data|\n";
+	$data = htmlspecialchars($data);
     return $data;
 }
 
@@ -138,7 +136,7 @@ function image_upload($img) {
 		}
 		imagedestroy( $img );
 
-		if(!rename( $temp_file,$target_path . $target_file_origin)) {
+		if(!rename( $temp_file,$target_path . $target_file)) {
 			$rtn = false;
 			$GLOBALS['imageErr'] = "L'image n'a pas était enregistrée";
 		}
@@ -146,8 +144,8 @@ function image_upload($img) {
 		// Delete any temp files
 		if( file_exists( $temp_file ) )
 			unlink( $temp_file );
-		echo "passage here \n";
-		$rtn = $target_file_origin;
+		$rtn = $target_file;
+		echo "rtn : $rtn \n";
 	}
 	else {
 		// Invalid file
@@ -185,67 +183,55 @@ function create_table_recette_viewers() {
 }
 
 function update_db(array $columns_name, array $to_insert) {
-	if($cb = array_combine($columns_name,$to_insert)) {
+	if(array_combine($columns_name,$to_insert)) {
 		$err = false; 
-		//check all to_insert section 
-		var_dump($cb);
 		$name_parse = test_input($to_insert[0]);
 		if(!preg_match("/^[a-zA-Z- é]{1,50}$/",$name_parse)) {
             $GLOBALS['nameErr'] = "Espace et tiret autorisés ainsi que les majuscules";  
 			$err = true;
 		} 
-       
 		$type_parse = test_select($to_insert[1],["sucree","salee","mixte"]);
 		if($type_parse === NULL) {
 			$err = true;
 			$GLOBALS['typeErr'] = "Pas d'autres options";
 		}
 		
-		/*if($image_parse === NULL) 
-			$GLOBALS['typeErr'] = 'Images (.jgp ou png';*/
 		$ingre_parse = test_input($to_insert[3]);
 		$true_parsing_ingre = parsing_textarea("ingre",$ingre_parse,",");
 		$err =  !$true_parsing_ingre;
-		//CHECK Ingredient1 Ingredient2 parsing
 		$descro_parse = test_input($to_insert[4]);
-
 
 		$prepa_parse = test_input($to_insert[5]);
 		$true_parsing_steps = parsing_textarea("prepa",$prepa_parse,",");
 		$err = !$true_parsing_steps;
-		//CHECK Etape1, Etape2
 
-		//PRICE = INT 
 		$price_parse = test_input($to_insert[6]);
 		if($price_parse < 1 || $price_parse > 100) {
 			$err = true;
 			$GLOBALS['priceErr'] = "Prix entre 1 et 100€";
 		}
-		//NBR_PEOPLE = SELECTOR 
+		
 		$nbr_people_parse = test_select($to_insert[7],[2,4,6,8,10]);
 		if($nbr_people_parse === NULL) {
 			$err = true;
 			$GLOBALS['nbrPeopleErr'] = "2,4,6,8,10 personnes";
 		}
-		//AUTHOR = test_input
+	
 		$author_parse = test_input($to_insert[8]);
 		if(!preg_match("/^[a-zA-Z- é]{1,30}$/",$author_parse)) {
             $GLOBALS['authorErr'] = "Espace et tiret autorisés ainsi que les majuscules"; 
 		}
 		$image_parse = image_upload($to_insert[2]);
+		echo "image_parse : $image_parse\n";
 		if($image_parse === FALSE)
-			$err = false;
-		echo "image : ".$image_parse."\n";
-		echo "ERR : |$err|\n";
-		
+			$err = true;
+	
 		if($err === FALSE) {
 			create_table_recette_viewers();
 			$to_insert_ = [$name_parse,$type_parse,$image_parse,$ingre_parse,
 							$descro_parse,$prepa_parse,$price_parse,
 							$nbr_people_parse,$author_parse];
-			//var_dump($to_insert_);
 			try {
-				echo "upload ?\n";
 				$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
 				$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
 				$sql = "INSERT INTO ViewersRecette 
@@ -253,33 +239,24 @@ function update_db(array $columns_name, array $to_insert) {
 						$columns_name[3], $columns_name[4], $columns_name[5],
 						$columns_name[6], $columns_name[7], $columns_name[8])
 				VALUES 
-						('$to_insert_[0]','$to_insert_[1]','$to_insert_[2]',
-						'$to_insert_[3]','$to_insert_[4]','$to_insert_[5]',
-						'$to_insert_[6]','$to_insert_[7]','$to_insert_[8]'
-						)
+						(:$columns_name[0],:$columns_name[1],:$columns_name[2],
+						:$columns_name[3],:$columns_name[4],:$columns_name[5],
+						:$columns_name[6],:$columns_name[7],:$columns_name[8])
 				";
-				// FONCTIONNE 
-				//Reqûete préparer ici avec .prepare();
-				$bdd->exec($sql);
-				echo "yes \n";
+				$stmt = $bdd->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+				$re_cb = array_combine($columns_name,$to_insert_);
+				$stmt->execute($re_cb);
 			}
 			catch (PDOException $e) {
 				var_dump($e->getMessage());
 			}
-			//echo "go uploade recipe \n";
 		}
 	}
 	else {
-		var_dump("ERRRR");
+		var_dump("ERROR in form");
 	}
-
-	/*$data = $db->prepare( 'INSERT INTO guestbook ( comment, name ) VALUES ( :message, :name );' );
-	$data->bindParam( ':message', $message, PDO::PARAM_STR );
-	$data->bindParam( ':name', $name, PDO::PARAM_STR );
-	$data->execute();*/
 }
 
-$html = "";
 if( isset( $_POST[ 'submitrecette' ] ) ) {
 	/*update_db( //-->>>>>>>>< FONCTIONNNNEE !
 		$all_columns_names_recipe,
@@ -293,5 +270,4 @@ if( isset( $_POST[ 'submitrecette' ] ) ) {
 			$_POST['price'],$_POST['convives'],$_POST['author']]
 	);
 }
-echo $html;
 ?> 
