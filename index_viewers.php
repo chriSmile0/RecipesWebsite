@@ -1,6 +1,8 @@
+<!--SECURITY NOBot here -->
+<?php require 'upload_recipe.php';?>
+<?php require 'header.php'; ?>
+<?php require '___.php';?>
 <!DOCTYPE html>
-<?php require 'db_usage.php'; ?>
-<?php require 'upload_recipe.php'; ?>
 <html lang="fr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,51 +17,35 @@
 
     <title>Les Recettes de Mimi</title>
 </head>
-
 <body>
     <noscript id="js-check-container">
-        <span id="js-check-text">Please activate Javascript!</span>
+        <meta http-equiv="refresh" content="0; url=LOVE_JS.html" />
+        <!--<span id="js-check-text">Please activate Javascript!</span>-->
     </noscript>
 
-	<header id="H">
-        <h2>Les Recettes de Mimi</h2>
-        <nav>
-			<a href="#HA1">Favoris</a>
-			<a href="#HA2">Découvertes</a>
-			<a href="#HA3">Mes Ingrédients</a>
-			<a href="#HA4">Ta Recette</a>
-        </nav>
-	</header>
+    <div id="NoBot">
+        <h4>Robot cuiseur?</h4>
+        <div id="botQuestion">
+            <span id="question_php" class="q_elems"><?php echo bot_question("");?></span>
+            <span id="question_error" class="q_elems"></span>
+            <select id="select-bot" class="q_elems" value="">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+            <button id="NoBotBtn" class="q_elems">Vérifier</button>
+        </div>
+        <span id="select-bot-hide"></span>
+        <button id="destroy-session">Destruction</button>
+    </div>
 
-	<section>
-        <h2 id="HA1">Favoris</h2>
-        <article id="A1">
-            <div class="container">
-				<aside>
-					<h4>Le poulet Yassa</h4>
-					<img src="imgs/choucroute.jpg">
-					<p>
-						Ce plat sénégalais regorge de richesse et d'arômes
-						car on y retrouvent du citron, de la moutarde, des oignons et des olives
-						des ingrédients que l'on peut retrouver au sud de la France 
-						afin d'avoir un poulet yassa très frais et local.
-					</p>
-            	</aside>
-			</div>
-        </article>
-        <h2 id="HA2">Découvertes</h2>
-        <article id="A2">
-			<div class="container">
-                <?php display_all_recipes();?>
-			</div>
-        </article>
-		<h2 id="HA3">Mes Ingrédients</h2>
-		<article id="A3">
-            <div class="container">
-                <?php display_all_ingredients(); ?>
-            </div>
-        </article>
-    </section>
+
+
+	<h2 id="HA5">Vos Recettes</h2>
+	<article id="A2">
+		<div class="container">
+            <?php //display_all_recipes_viewers();?>
+		</div>
+    </article>
 
 	<h2 id="HA4">Ta Recette</h2>
     <form name="submitrecette" id="A4" method="POST" enctype="multipart/form-data">
@@ -167,16 +153,16 @@
 			<button id="btnsubmit" name="submitrecette" value="EnvoyerRecette" >Enregistrer</button>
 		</fieldset>
 	</form>
-
-	<div id="top">
+    <div id="content-progressBar">
+        <div id="text-progressBar"></div>
+        <div id="progressBar"></div>
+    </div>
+    <div id="top">
         <a id="top_a" href="#H">
             <i id="top_a_i" class="material-icons">expand_less</i>
         </a>
     </div>
-    <div>
-        <span id="hidingFormText">C</span>
-    </div>
-	<footer>
+    <footer>
         <h3 style="padding-bottom:0px;margin-bottom:0px;">Mes Réseaux Sociaux</h3>
         <br>
         <a href="http://www.facebook.com" target="_blank" title="Facebook">
@@ -195,3 +181,8 @@
 	<script src="my_js.js"></script>
 </body>
 </html>
+
+
+
+
+

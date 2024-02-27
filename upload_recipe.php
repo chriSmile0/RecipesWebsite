@@ -18,7 +18,7 @@ $nameErr = $typeErr = $imageErr = $priceErr = $nbrPeopleErr = $authorErr = "";
 $ingreErr = $descroErr = $prepaErr = "";
 
 $all_columns_names_recipe = [
-	"name","type","image","ingredients","description","preparation","price","nbr_people","author"
+	"name","type","image","ingredients","preparation","description","price","nbr_people","author"
 ];
 
 
@@ -77,16 +77,9 @@ function parsing_textarea(string $label, string $content, string $separator) : b
 			$itemErr .= "Format = Ingrédient1,Ingrédient2";
 		}
 		foreach($tab as $item) {
-			if(strlen($item)>30) {
-				$itemErr .= "Un ingrédient ne fait pas plus de 30 caractères";
+			if(!preg_match("/^[0-9a-zA-Z- é]{1,300}$/",$item)) {
+            	$itemErr .= "Espace et tiret autorisés ainsi que les majuscules 300 caractères par étape max"; 
 				break;
-			}
-			else {
-				//TEST_INPUT
-				if(!preg_match("/^[0-9a-zA-Z- é]{1,300}$/",$item)) {
-            		$itemErr .= "Espace et tiret autorisés ainsi que les majuscules 300 caractères par étape max"; 
-					break;
-				}
 			}
 		}
 		if($itemErr !== "") {
@@ -198,9 +191,9 @@ function update_db(array $columns_name, array $to_insert) {
 		$ingre_parse = test_input($to_insert[3]);
 		$true_parsing_ingre = parsing_textarea("ingre",$ingre_parse,",");
 		$err =  !$true_parsing_ingre;
-		$descro_parse = test_input($to_insert[4]);
+		$descro_parse = test_input($to_insert[5]);
 
-		$prepa_parse = test_input($to_insert[5]);
+		$prepa_parse = test_input($to_insert[4]);
 		$true_parsing_steps = parsing_textarea("prepa",$prepa_parse,",");
 		$err = !$true_parsing_steps;
 
@@ -209,7 +202,6 @@ function update_db(array $columns_name, array $to_insert) {
 			$err = true;
 			$GLOBALS['priceErr'] = "Prix entre 1 et 100€";
 		}
-		
 		$nbr_people_parse = test_select($to_insert[7],[2,4,6,8,10]);
 		if($nbr_people_parse === NULL) {
 			$err = true;
@@ -220,15 +212,17 @@ function update_db(array $columns_name, array $to_insert) {
 		if(!preg_match("/^[a-zA-Z- é]{1,30}$/",$author_parse)) {
             $GLOBALS['authorErr'] = "Espace et tiret autorisés ainsi que les majuscules"; 
 		}
-		$image_parse = image_upload($to_insert[2]);
-		echo "image_parse : $image_parse\n";
+		$image_parse = FALSE;
+		if($err === FALSE) 
+			$image_parse = image_upload($to_insert[2]);
+
 		if($image_parse === FALSE)
 			$err = true;
 	
 		if($err === FALSE) {
 			create_table_recette_viewers();
 			$to_insert_ = [$name_parse,$type_parse,$image_parse,$ingre_parse,
-							$descro_parse,$prepa_parse,$price_parse,
+							$prepa_parse,$descro_parse,$price_parse,
 							$nbr_people_parse,$author_parse];
 			try {
 				$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
@@ -268,5 +262,51 @@ if( isset( $_POST[ 'submitrecette' ] ) ) {
 			$_POST['ingredients'],$_POST['prepa'],$_POST['description'],
 			$_POST['price'],$_POST['convives'],$_POST['author']]
 	);
+}
+
+
+function display_recipe_viewer($row) {
+	$Output = "<aside><div></div>";
+	// INGREDIENTS SEPARATR = ,
+	$name = "<h4>".$row['name']."</h4>";
+	$ingredients = explode(",",$row['ingredients']);
+	$out_ingredients = "<h5>Ingrédients</h5>\n<ul>";
+	foreach($ingredients as $ingre) {
+		$out_ingredients .= "<li>".$ingre."</li>";
+	}
+	$out_ingredients .= "</ul>";
+	$img = "<img src=\"subs_imgs/".$row['image']."\">";
+	$descro = "<p>".$row['description']."</p>";
+
+	// PARSING DES ETAPES 
+	// ETAPES SEPARATOR = \n\n
+	$etapes = explode(",",$row['preparation']);
+	$out_etapes = "<h5>Étapes</h5>\n<ul>";
+	foreach($etapes as $step) {
+		$out_etapes .= "<li>".$step."</li>";
+	}
+	$out_etapes .= "</ul>";
+	$details = "<ul class=\"details\">";
+	$details .= "<li>Prix:<span style=\"margin-left:20%;\">".$row['price']."</span></li>";
+	$details .= "<li>Convives:<span style=\"margin-left:10%;\">".$row['nbr_people']."</span></li>";
+	$details .= "<li>Auteur:<span style=\"margin-left:10%;\">".$row['author']."</span></li>";
+	$details .= "</ul>";
+	$Output .= "$name\n$img\n$descro\n$out_ingredients\n$out_etapes
+		<h5>Informations</h5>$details";//\n$out_etapes\n$details";
+	$Output .= "</aside>";
+	return $Output;
+}
+
+function display_all_recipes_viewers() {
+	try {
+		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
+		$sql = "SELECT * from ViewersRecette";
+		foreach ($bdd->query($sql) as $row) {
+			echo display_recipe_viewer($row);
+		}
+	}
+	catch(PDOEXCEPTION $e){
+		var_dump($e->getMessage());
+	}
 }
 ?> 
