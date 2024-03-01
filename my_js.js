@@ -1,6 +1,6 @@
 window.onscroll = function() {AfficherRemonter()};
-if(document.getElementById('content-progressBar') != null)
-  window.addEventListener('load',bePatientv2(),false);
+/*if(document.getElementById('content-progressBar') != null)
+  window.addEventListener('load',bePatientv2(),false);*/
 
 var regexNomPrenom =  /^[a-zA-Z- ]{1,30}$/;
 var regexMessage = /^[a-zA-Z0-9 ,áàçéèÁÀÇÉÈÍÌÚÙ.-]{1,}$/;
@@ -82,6 +82,12 @@ function veriform(form) {
 
 //window.onload = bePatientv2();
 
+function showForm() {
+  (document.getElementsByClassName('container_n')[0]).style.display = "block";
+  (document.getElementById('A4_n')).style.display = "block";
+  (document.getElementById('content-progressBar')).style.display = "none";
+}
+
 function bePatientv2() { // progressBar
   let cpt = 0;
   let width = 0;
@@ -90,9 +96,7 @@ function bePatientv2() { // progressBar
   function update() {
     if(cpt == 33) {
       clearInterval(id);
-      (document.getElementsByClassName('container_n')[0]).style.display = "block";
-      (document.getElementById('A4_n')).style.display = "block";
-      (document.getElementById('content-progressBar')).style.display = "none";
+      showForm();
     }
     else {
       cpt++;

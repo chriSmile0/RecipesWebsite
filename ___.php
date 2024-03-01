@@ -43,5 +43,29 @@ function bot_question(string $v) : string {
 	}
 	return $rtn;
 }
+
+function noBot() {
+	if(!!!key_exists("go",$_SESSION)) {
+		$bot_question_rep = bot_question("");
+		return "<div id=\"NoBot\">
+			<h4>Robot cuiseur?</h4>
+			<div id=\"botQuestion\">
+				<span id=\"question_php\" class=\"q_elems\">$bot_question_rep</span>
+				<span id=\"question_error\" class=\"q_elems\"></span>
+				<select id=\"select-bot\" class=\"q_elems\" value=\"\">
+					<option value=\"oui\">Oui</option>
+					<option value=\"non\">Non</option>
+				</select>
+				<button id=\"NoBotBtn\" class=\"q_elems\">Vérifier</button>
+			</div>
+			<span id=\"select-bot-hide\"></span>
+		</div>
+		<script src=\"no_bot.js\"></script>";
+	}
+	else {
+		header("Location: index_viewers.php");
+	}
+	return "";
+}
 // thanks to RobinWood -> digininja
 ?>

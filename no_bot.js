@@ -54,8 +54,8 @@ function deleteSessionv2() {
 		console.log(reponse);
 	  };
 	}
-	xmlhttp.open("GET",",,,.php?session=ban");
-	xmlhttp.send();
+	xmlhttp.open("POST",",,,.php");
+	xmlhttp.send("session=ban");
 }
 
 function verifBotResponse(e) {
@@ -88,8 +88,10 @@ function verifBotResponse(e) {
 		  }
 		};
 	  }
-	  xmlhttp.open("GET",",,,.php?q="+vQ+"&a="+elem,true);
-	  xmlhttp.send();
+	  url = ",,,.php";
+	  xmlhttp.open("POST",url,true);
+	  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	  xmlhttp.send("q="+vQ+"&a="+elem);
 	}
 	else 
 	  console.log("PLEASE NOT MODIFY ELEMENT");
@@ -107,11 +109,9 @@ function welcomeSession() {
 		console.log(reponse);
 	  };
 	}
-	xmlhttp.open("GET",",,,.php?session=connected");
-	xmlhttp.send();
+	xmlhttp.open("POST",",,,.php");
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("session=connected");
 }
 
-
-
-  
 (document.getElementById("NoBotBtn")).addEventListener("click", verifBotResponse, false);

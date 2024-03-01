@@ -161,6 +161,7 @@
 	<script src="my_js.js">
         (document.getElementById('A4_n')).onsubmit = function () {return veriform(document.getElementById('A4_n'))};
     </script>
+    <?php echo load_bePatient(); ?>
 </body>
 </html>
 

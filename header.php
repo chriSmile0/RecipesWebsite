@@ -16,4 +16,19 @@
 	if(check_IP($ip,1) === true) 
 		ban_page($ip);
 	
+function load_bePatient() {
+	if(key_exists("go",$_SESSION)) {
+		if($_SESSION['go'] && !key_exists("wait_ok",$_SESSION)) {
+			$_SESSION['wait_ok'] = true;
+			return "<script>
+						window.addEventListener('load',bePatientv2(),false);
+					</script>";
+		}
+		if($_SESSION['go'] && $_SESSION['wait_ok'])
+			return "<script>
+						window.addEventListener('load',showForm(),false);
+					</script>";
+	}
+	return "";
+}
 ?> 

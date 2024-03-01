@@ -67,12 +67,12 @@ function search_q_and_a(string $q, string $a) : array {
 	return array();
 }
 
-if(isset($_REQUEST['q']) && isset($_REQUEST['a'])) {
-	echo json_encode(search_q_and_a($_REQUEST['q'],$_REQUEST['a']));
+if(isset($_POST['q']) && isset($_POST['a'])) {
+	echo json_encode(search_q_and_a($_POST['q'],$_POST['a']));
 }
 
-if(isset($_REQUEST['session'])) {
-	if($_REQUEST['session'] === "ban") {
+if(isset($_POST['session'])) {
+	if($_POST['session'] === "ban") {
 		ban_IP();
 		session_destroy();
 		$_SESSION = array();
