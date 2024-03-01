@@ -1,4 +1,6 @@
 window.onscroll = function() {AfficherRemonter()};
+/*if(document.getElementById('content-progressBar') != null)
+  window.addEventListener('load',bePatientv2(),false);*/
 
 var regexNomPrenom =  /^[a-zA-Z- ]{1,30}$/;
 var regexMessage = /^[a-zA-Z0-9 ,áàçéèÁÀÇÉÈÍÌÚÙ.-]{1,}$/;
@@ -6,6 +8,7 @@ var regexMessage = /^[a-zA-Z0-9 ,áàçéèÁÀÇÉÈÍÌÚÙ.-]{1,}$/;
 
 let nomErr = "Espace et tiret autorisés ainsi que les majuscules (30 caractères max)";
 let messageErr = "Espace et tiret autorisés ainsi que les majuscules";
+
 
 function writeError(champ,error,textError) {
   if(error) {
@@ -15,6 +18,17 @@ function writeError(champ,error,textError) {
   }
   else {
     (document.getElementById(champ.id+'error')).innerText = "";
+  }
+}
+
+function writeErrorv2(id,error,textError) {
+  if(error) {
+    var elemn = document.getElementById(id);
+    elemn.style.color = "red";
+    elemn.innerText = textError;
+  }
+  else {
+    (document.getElementById(id)).innerText = "";
   }
 }
 
@@ -62,4 +76,33 @@ function veriform(form) {
   return false;
 }
 
-(document.getElementById('A4')).onsubmit = function () {return veriform(document.getElementById('A4'))};
+//(document.getElementById('A4_n')).onsubmit = function () {return veriform(document.getElementById('A4_n'))};
+//(document.getElementById('A4')).onsubmit = function () {return veriform(document.getElementById('A4'))};
+
+
+//window.onload = bePatientv2();
+
+function showForm() {
+  (document.getElementsByClassName('container_n')[0]).style.display = "block";
+  (document.getElementById('A4_n')).style.display = "block";
+  (document.getElementById('content-progressBar')).style.display = "none";
+}
+
+function bePatientv2() { // progressBar
+  let cpt = 0;
+  let width = 0;
+  const id = setInterval(update,400);
+  (document.getElementById('content-progressBar')).style.display = "block";
+  function update() {
+    if(cpt == 33) {
+      clearInterval(id);
+      showForm();
+    }
+    else {
+      cpt++;
+      width = width+5.5;
+      (document.getElementById('progressBar')).style.width = width+"px";
+      (document.getElementById('text-progressBar')).innerText = ((cpt*3.04).toFixed(0))+"%";
+    }
+  };
+}

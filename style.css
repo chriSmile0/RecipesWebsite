@@ -93,7 +93,7 @@ aside > div {
     margin-right:auto;
     margin-top:40px;
     border:solid;
-    border-color: ivory;
+    border-color: black; /*ivory*/
     border-width:1px;
 }
 
@@ -104,15 +104,23 @@ aside > ul {
 }
 
 aside > ul > li  {
-    background-color: rgb(165, 42, 42,0.5);
+    background-color: rgb(155, 42, 42,0.7);
     text-align:left;
+    color: ivory;
+    font-weight:550;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     /*top right bottom left */
     border:solid;
-    border-style:dashed;
+    /*border-style:dashed;*/
+    border-color:brown;
     border-radius: 20px;
     border-width: 0.15px;
     margin:  4px 0px  4px 0px; 
-    padding: 5px 10px 5px 10px;
+    padding: 6px 10px 6px 15px;
+}
+
+li > span {
+    color:white;
 }
 
 aside > ul.details {
@@ -152,6 +160,7 @@ form {
     height:auto;
     /*visibility: hidden;*/
     /*display:none; better than visibility;hidden*/
+    display:none;
 }
 
 fieldset {
@@ -196,18 +205,74 @@ div > textarea {
     height:200px;
 }
 
+#botQuestion {
+    background-color: white;
+    display:flex;
+    align-items: center;
+    border:solid;
+    width:20%;
+    margin-left:auto;
+    margin-right:auto;
+    flex-direction: column;
+}
+
+#botQuestion > .q_elems {
+    margin-top:5px;
+    margin-bottom:5px;
+    padding: 2px 3px 2px 3px;
+}
+
+#select-bot-hide {
+    display:none;
+}
+
 form button {
-    background-color: indianred;
+    background-color: rgb(145, 42, 42,0.8);/*indianred*/
     border:solid;
     border-width:0.2px;
     display:block;
-    margin-left:auto;
+    color:ivory;
+    margin-left:48%;
     margin-right:auto;
 	font-size: 18px;
-    height: 40px;
-	width:auto;  
+    height: 42px;
+	width:15%;  
 	font-weight: bold;
     cursor:pointer;
+    padding: 2px 3px 2px 3px;
+}
+
+.container_n  {
+    display:none;
+}
+
+#A4_n {
+    display:none;
+}
+
+#content-progressBar {
+    display:none;
+    margin-left:auto;
+    margin-right:auto;
+    width:188px;
+    height:30px;
+    background-color: brown;
+    border:solid;
+    position:relative;
+}
+
+#progressBar {
+    margin-left:0px;
+    width:0px;
+    height:24px;
+    background-color:green;
+}
+
+#content-progressBar > #text-progressBar {
+    position:absolute;
+    left:45%;
+    top:4px;
+    color:white;
 }
 
 #top {
@@ -303,6 +368,10 @@ a {
     form textarea {
         width:100%;
     }
+    form button {
+        width:80%;
+        margin-left:10%;
+    }
 }
 
 @media screen and (max-width:800px) {
@@ -321,8 +390,8 @@ a {
     aside > ul {
         width: 90%;
         display:block;
-        margin-left:auto;
-        margin-right:auto;
+        margin-left:2px;
+        /*margin-right:auto;*/
 
         list-style-type: none;
     }
@@ -333,15 +402,28 @@ a {
         text-align:center;
     }
 
-    ul.details {
-        width:100%;
+    aside > ul.details {
+        width: 90%;
         display:block;
-        margin-left:29%;
+        /*align-items: center;*/
+        margin-left:2px;
         margin-right:auto;
+        text-align:center;
+    }
+
+    ul.details > li {
         text-align:left;
     }
 
-    ul.details > li{
-        text-align:center;
+    form {
+        width:100%;
+    }
+    form div {
+        margin-top:2px;
+        margin-bottom: 0px;
+    }
+    form div > div {
+        margin-top:0px;
+        margin-bottom: 4px;
     }
 }

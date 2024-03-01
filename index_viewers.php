@@ -1,6 +1,8 @@
+<!--SECURITY NOBot here -->
+<?php require 'upload_recipe.php';?>
+<?php require 'header.php'; ?>
+<?php require '___.php';?>
 <!DOCTYPE html>
-<?php require 'db_usage.php'; ?>
-<?php require 'upload_recipe.php'; ?>
 <html lang="fr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,50 +17,18 @@
 
     <title>Les Recettes de Meli</title>
 </head>
-
 <body>
-	<header id="H">
-        <h2>Les Recettes de Meli</h2>
-        <nav>
-			<a href="#HA1">Favoris</a>
-			<a href="#HA2">Découvertes</a>
-			<a href="#HA3">Mes Ingrédients</a>
-			<a href="#HA4">Ta Recette</a>
-        </nav>
-	</header>
+    <?php echo no_script();?>
 
-	<section>
-        <h2 id="HA1">Favoris</h2>
-        <article id="A1">
-            <div class="container">
-				<aside>
-					<h4>Le poulet Yassa</h4>
-					<img src="imgs/choucroute.jpg">
-					<p>
-						Ce plat sénégalais regorge de richesse et d'arômes
-						car on y retrouvent du citron, de la moutarde, des oignons et des olives
-						des ingrédients que l'on peut retrouver au sud de la France 
-						afin d'avoir un poulet yassa très frais et local.
-					</p>
-            	</aside>
-			</div>
-        </article>
-        <h2 id="HA2">Découvertes</h2>
-        <article id="A2">
-			<div class="container">
-                <?php display_all_recipes();?>
-			</div>
-        </article>
-		<h2 id="HA3">Mes Ingrédients</h2>
-		<article id="A3">
-            <div class="container">
-                <?php display_all_ingredients(); ?>
-            </div>
-        </article>
-    </section>
+	<h2 id="HA5">Vos Recettes</h2>
+	<article id="A2">
+		<div class="container_n">
+            <?php display_all_recipes_viewers();?>
+		</div>
+    </article>
 
 	<h2 id="HA4">Ta Recette</h2>
-    <form name="submitrecette" id="A4" method="POST" enctype="multipart/form-data">
+    <form name="submitrecette" id="A4_n" method="POST" enctype="multipart/form-data">
         <fieldset>
 			<div id="Nom">
                 <div>
@@ -163,14 +133,16 @@
 			<button id="btnsubmit" name="submitrecette" value="EnvoyerRecette" >Enregistrer</button>
 		</fieldset>
 	</form>
-
-	<div id="top">
+    <div id="content-progressBar">
+        <div id="text-progressBar"></div>
+        <div id="progressBar"></div>
+    </div>
+    <div id="top">
         <a id="top_a" href="#H">
             <i id="top_a_i" class="material-icons">expand_less</i>
         </a>
     </div>
-
-	<footer>
+    <footer>
         <h3 style="padding-bottom:0px;margin-bottom:0px;">Mes Réseaux Sociaux</h3>
         <br>
         <a href="http://www.facebook.com" target="_blank" title="Facebook">
@@ -186,6 +158,14 @@
             <i class="fa fa-instagram" style="font-size:40px"></i>
         </a>
     </footer>
-	<script src="my_js.js">(document.getElementById('A4')).onsubmit = function () {return veriform(document.getElementById('A4'))};</script>
+	<script src="my_js.js">
+        (document.getElementById('A4_n')).onsubmit = function () {return veriform(document.getElementById('A4_n'))};
+    </script>
+    <?php echo load_bePatient(); ?>
 </body>
 </html>
+
+
+
+
+
