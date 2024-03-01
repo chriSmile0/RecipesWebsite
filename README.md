@@ -7,31 +7,11 @@ I wanted to write recipes, with images and an interactive interface. Whether for
 
 ## Render 
 
-### V1.0
-#### Desktop 
-![IMG1](screens/desktop/A1.png)
-![IMG1](screens/desktop/A2_1.png)
-![IMG1](screens/desktop/A2_2.png)
-![IMG1](screens/desktop/A3_1.png)
-![IMG1](screens/desktop/A3_2.png)
-![IMG1](screens/desktop/A4.png)
-![IMG1](screens/desktop/footer.png)
+### Demo 
+[show.webm](https://github.com/chriSmile0/RecipesWebsite/assets/113117256/2b690d00-4489-4e33-88e5-69a2230b6500)
 
-#### Mobile 
 
-![IMG1](screens/mobile/H_A1_1.png)
-![IMG1](screens/mobile/A1_2.png)
-![IMG1](screens/mobile/A2.png)
-![IMG1](screens/mobile/A3_1.png)
-![IMG1](screens/mobile/A3_2.png)
-![IMG1](screens/mobile/A4.png)
-![IMG1](screens/mobile/footer.png)
-
-### V1.1 
-- Upload Recipe for viewers we want to post recipe 
-- NewRender (but update in next release (form update))
-
-### V1.5 -> next release
+### V1.5
 - NoBot process
 - DDOS prevention (banList, etc..)
 - HomePage (NoBot)-> (choice between) MimiRecipes and ViewersRecipe
