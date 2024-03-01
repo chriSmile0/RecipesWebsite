@@ -13,7 +13,7 @@
 	<link rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Les Recettes de Mimi</title>
+    <title>Les Recettes de Meli</title>
 </head>
 
 <body>

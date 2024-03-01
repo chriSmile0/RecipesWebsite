@@ -19,7 +19,7 @@
     <?php include '___.php';?>
     <?php echo no_script();?>
 	<header id="H">
-        <h2>Les Recettes de Mimi</h2>
+        <h2>Les Recettes de Meli</h2>
 	</header>
 
 	<section>
