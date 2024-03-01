@@ -17,12 +17,8 @@
 </head>
 
 <body>
-    <noscript id="js-check-container">
-        <span id="js-check-text">Please activate Javascript!</span>
-    </noscript>
-
 	<header id="H">
-        <h2>Les Recettes de Mimi</h2>
+        <h2>Les Recettes de Meli</h2>
         <nav>
 			<a href="#HA1">Favoris</a>
 			<a href="#HA2">Découvertes</a>
@@ -173,9 +169,7 @@
             <i id="top_a_i" class="material-icons">expand_less</i>
         </a>
     </div>
-    <div>
-        <span id="hidingFormText">C</span>
-    </div>
+
 	<footer>
         <h3 style="padding-bottom:0px;margin-bottom:0px;">Mes Réseaux Sociaux</h3>
         <br>
@@ -192,6 +186,6 @@
             <i class="fa fa-instagram" style="font-size:40px"></i>
         </a>
     </footer>
-	<script src="my_js.js"></script>
+	<script src="my_js.js">(document.getElementById('A4')).onsubmit = function () {return veriform(document.getElementById('A4'))};</script>
 </body>
 </html>

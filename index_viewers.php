@@ -15,40 +15,20 @@
 	<link rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Les Recettes de Mimi</title>
+    <title>Les Recettes de Meli</title>
 </head>
 <body>
-    <noscript id="js-check-container">
-        <meta http-equiv="refresh" content="0; url=LOVE_JS.html" />
-        <!--<span id="js-check-text">Please activate Javascript!</span>-->
-    </noscript>
-
-    <div id="NoBot">
-        <h4>Robot cuiseur?</h4>
-        <div id="botQuestion">
-            <span id="question_php" class="q_elems"><?php echo bot_question("");?></span>
-            <span id="question_error" class="q_elems"></span>
-            <select id="select-bot" class="q_elems" value="">
-                <option value="oui">Oui</option>
-                <option value="non">Non</option>
-            </select>
-            <button id="NoBotBtn" class="q_elems">Vérifier</button>
-        </div>
-        <span id="select-bot-hide"></span>
-        <button id="destroy-session">Destruction</button>
-    </div>
-
-
+    <?php echo no_script();?>
 
 	<h2 id="HA5">Vos Recettes</h2>
 	<article id="A2">
-		<div class="container">
-            <?php //display_all_recipes_viewers();?>
+		<div class="container_n">
+            <?php display_all_recipes_viewers();?>
 		</div>
     </article>
 
 	<h2 id="HA4">Ta Recette</h2>
-    <form name="submitrecette" id="A4" method="POST" enctype="multipart/form-data">
+    <form name="submitrecette" id="A4_n" method="POST" enctype="multipart/form-data">
         <fieldset>
 			<div id="Nom">
                 <div>
@@ -178,7 +158,9 @@
             <i class="fa fa-instagram" style="font-size:40px"></i>
         </a>
     </footer>
-	<script src="my_js.js"></script>
+	<script src="my_js.js">
+        (document.getElementById('A4_n')).onsubmit = function () {return veriform(document.getElementById('A4_n'))};
+    </script>
 </body>
 </html>
 

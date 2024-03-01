@@ -12,15 +12,12 @@
 	<link rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Les Recettes de Mimi</title>
+    <title>Les Recettes de Meli</title>
 </head>
 
 <body>
-    <noscript id="js-check-container">
-        <meta http-equiv="refresh" content="0; url=LOVE_JS.html" />
-        <!--<span id="js-check-text">Please activate Javascript!</span>-->
-    </noscript>
     <?php include '___.php';?>
+    <?php echo no_script();?>
 	<header id="H">
         <h2>Les Recettes de Mimi</h2>
 	</header>

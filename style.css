@@ -242,8 +242,16 @@ form button {
     padding: 2px 3px 2px 3px;
 }
 
+.container_n  {
+    display:none;
+}
+
+#A4_n {
+    display:none;
+}
+
 #content-progressBar {
-    display:block;
+    display:none;
     margin-left:auto;
     margin-right:auto;
     width:188px;

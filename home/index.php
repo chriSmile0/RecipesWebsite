@@ -16,21 +16,18 @@
 <body>
     <noscript id="js-check-container">
         <meta http-equiv="refresh" content="0; url=LOVE_JS.html" />
-        <!--<span id="js-check-text">Please activate Javascript!</span>-->
     </noscript>
-    <?php include '../___.php';?>
     <div id="title">
         <h1>Les recettes de Meli</h1>
     </div>
 
     <div id="content">
-        <div id="mimi" onclick="document.location.href='../index_meli.php'">
+        <div id="meli" onclick="document.location.href='../index_meli.php'">
             <h2>Mes Recettes</h2>
         </div>
-        <div id="viewers" onclick="document.location.href='../index_viewers.php'">
+        <div id="viewers" onclick="document.location.href='../home_viewers.php'">
             <h2>Vos Recettes</h2>
         </div>
     </div>
-    <script src="home_js.js"></script>
 </body>
 </html>
