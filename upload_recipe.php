@@ -1,6 +1,4 @@
 <?php 
-//THANKS TO ROBIN_WOOD -> digininja
-
 /**
  * [UTILS_PREGS (PHP)]
  * [NAME]	-> preg_match("/^[a-zA-Z-é ]{1,50}$/",$name)
@@ -21,18 +19,25 @@ $all_columns_names_recipe = [
 	"name","type","image","ingredients","preparation","description","price","nbr_people","author"
 ];
 
-
+/**
+ * [BRIEF]	Sanitize input element
+ * @param 	$data	the data was in the input fields
+ * @example test_input("'=1 ' Hello")
+ * @author	chriSmile0
+ * @return	array|string	the content return by the htmlspecialchars 
+*/
 function test_input($data) {
-	// XSS 
-    /*$data = htmlspecialchars($data); // not enough */
-	$trim_data = trim($data);
-    $data = stripslashes($trim_data);
-	// $GLOBALS["___mysqli_ston"]; ? 
-	//$data = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"],  $data) : "Error\n";
-	$data = htmlspecialchars($data);
-    return $data;
+	return htmlspecialchars(stripslashes(trim($data)));
 }
 
+/**
+ * [BRIEF]	Test if the select value is in predifined values
+ * @param 	/		$select_elem	the value of elem select
+ * @param	array	$values			predifined values
+ * @example 
+ * @author	chriSmile0
+ * @return 	/	The element or NULL
+*/
 function test_select($select_elem, array $values) {
 	if(in_array($select_elem,$values))
 		return $select_elem;
@@ -41,7 +46,18 @@ function test_select($select_elem, array $values) {
 
 }
 
-
+/**
+ * [BRIEF]	In the 'ingrédients' and 'etapes' textarea the format is E,E. 
+ * 			This if for that who create a parsing for separate each element 
+ * 			and check the format of each element in addition of the format 
+ * 			of the textarea
+ * @param	string	$label		the label of the textarea (ingre/prepa)
+ * @param 	string	$content	the textarea content
+ * @param	string	$separator	the separator of the element (' '/',')
+ * @example parsing_textarea("ingre","Tomate,Riz",",")
+ * @author	chriSmile0
+ * @return 	bool	true if is ok false if not
+*/
 function parsing_textarea(string $label, string $content, string $separator) : bool {
 	$rtn = true;
 	if($label === "ingre") {
@@ -96,6 +112,16 @@ function parsing_textarea(string $label, string $content, string $separator) : b
 	return $rtn;
 }
 
+/**
+ * [THANKS_TO] -> digininja
+ * [BRIEF]	The upload image process is a big insert for the security problem.
+ * 			It"s important to check all problems where you upload a file
+ * @param	$img	the img element to upload  
+ * @example image_upload($_POST['img'])
+ * @author	chriSmile0
+ * @return 	bool|string	false if not upload or the path we save in the images folder
+ * @version 1.0 -> maybe update soon 
+*/
 function image_upload($img) {
 	$rtn = true;
 	$uploaded_name = $img[ 'name' ];
@@ -146,12 +172,18 @@ function image_upload($img) {
 	}
 	return $rtn;
 }
+
+/**
+ * [BRIEF]	The table when you store the recipes of the viewers 
+ * @param 	void
+ * @example create_table_recette_viewers()
+ * @author	chriSmile0
+ * @return 	/
+*/
 function create_table_recette_viewers() {
 	try {
 		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
-		//$bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
-		//$bdd->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 		$sql = "CREATE TABLE IF NOT EXISTS ViewersRecette (
 				id INTEGER PRIMARY KEY AUTOINCREMENT ,
 				name VARCHAR(50) NOT NULL,
@@ -174,6 +206,15 @@ function create_table_recette_viewers() {
 	}
 }
 
+/**
+ * [BRIEF]	Check all inputs, if all tests are OK, so it's possible to add 
+ * 			the information of the recipe in the target table (ViewersRecette)
+ * @param 	array $columns_name	the columns where you want to insert content
+ * @param 	array $to_insert	the content to insert in each columns
+ * @example update_db(['name'],['Joe'])
+ * @author	chriSmile0
+ * @return 	/
+*/
 function update_db(array $columns_name, array $to_insert) {
 	if(array_combine($columns_name,$to_insert)) {
 		$err = false; 
@@ -250,12 +291,10 @@ function update_db(array $columns_name, array $to_insert) {
 	}
 }
 
+/**
+ * [BRIEF] FORM POST
+*/
 if( isset( $_POST[ 'submitrecette' ] ) ) {
-	/*update_db( //-->>>>>>>>< FONCTIONNNNEE !
-		$all_columns_names_recipe,
-		["Choucroute","oo",$_FILES['uploaded'],"Choux,saucisse","Un plat typique","Faire cuire le choux",20,4,"_________________________________________________________"]
-		//"name","type","image","ingredients","description","preparation","price","nbr_people","author"
-	);*/
 	update_db(
 		$all_columns_names_recipe,
 		[$_POST['name'],$_POST['type_prepa'],$_FILES['uploaded'],
@@ -264,10 +303,16 @@ if( isset( $_POST[ 'submitrecette' ] ) ) {
 	);
 }
 
-
-function display_recipe_viewer($row) {
+/**
+ * [BRIEF]	Display in the html content each column on the corresponding recipe
+ * 			$row
+ * @param 	$row	The table row
+ * @example display_recipe_viewer($row)
+ * @author	chriSmile0
+ * @return 	string	the content to diplay in the index.php file 
+*/
+function display_recipe_viewer($row) : string {
 	$Output = "<aside><div></div>";
-	// INGREDIENTS SEPARATR = ,
 	$name = "<h4>".$row['name']."</h4>";
 	$ingredients = explode(",",$row['ingredients']);
 	$out_ingredients = "<h5>Ingrédients</h5>\n<ul>";
@@ -277,9 +322,6 @@ function display_recipe_viewer($row) {
 	$out_ingredients .= "</ul>";
 	$img = "<img src=\"subs_imgs/".$row['image']."\">";
 	$descro = "<p>".$row['description']."</p>";
-
-	// PARSING DES ETAPES 
-	// ETAPES SEPARATOR = \n\n
 	$etapes = explode(",",$row['preparation']);
 	$out_etapes = "<h5>Étapes</h5>\n<ul>";
 	foreach($etapes as $step) {
@@ -297,6 +339,13 @@ function display_recipe_viewer($row) {
 	return $Output;
 }
 
+/**
+ * [BRIEF]	(@see display_recipe_viewer) for all recipes in target table
+ * @param 	void
+ * @example display_all_recipes_viewers()
+ * @author	chriSmile0
+ * @return 	/
+*/
 function display_all_recipes_viewers() {
 	try {
 		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
@@ -309,4 +358,12 @@ function display_all_recipes_viewers() {
 		var_dump($e->getMessage());
 	}
 }
+
+/**
+ * [BRIEF]
+ * @param 
+ * @example 
+ * @author	chriSmile0
+ * @return 
+*/
 ?> 

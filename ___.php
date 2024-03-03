@@ -1,13 +1,36 @@
 <?php 
 $questions_bans_id = [];
 
+/**
+ * [BRIEF]	Generate no_script element for say to user/developper to activate JS
+ * @param 	void
+ * @example no_script()
+ * @author	chriSmile0
+ * @return 	<noscript> tag with redirect URL
+*/
 function no_script() : string {
 	return "<noscript id=\"js-check-container\">
 	<meta http-equiv=\"refresh\" content=\"0; url=home/LOVE_JS.html\" />
 	</noscript>\n";
 }
 
-function bot_question(string $v) : string {
+
+/**
+ * [BRIEF]	Display a question of the _database for try to block simple
+ * 			bot 
+ * 			[COUNTER-QUESTION] : 
+ * 				- CHATGPT-style RESPONSE	
+ * 				- KNOWNS ALL QUESTIONS AND HAVE RESPONSE ON THE ATTACKER BOT
+ * 			[COUNTER OF COUNTER-BOT] : 
+ * 				- OBVIOUS QUESTION -> FAST RESPONSE -> CHATGPT-style TAKE MORE TIME OF THIS
+ * 				- REPLACE QUESTION EACH WEEK (KNOWLEDGE COUNTER)
+ * @param 	void
+ * @example bot_question()
+ * @author	chriSmile0
+ * @return 	string	The random question choice in many question in the table QandA
+ * @version 1.0	-> update soon 
+*/
+function bot_question() : string {
 	$rtn = "";
 	try {
 		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/_database.db');
@@ -36,7 +59,7 @@ function bot_question(string $v) : string {
 		$stmt = $bdd->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]); // NOT NECESSARY HERE
 		$stmt->execute([':id'=> $random_choice]);
 		$res = $stmt->fetchAll();
-		$rtn = $res[0]['question'].$v;
+		$rtn = $res[0]['question'];
 	}
 	catch (PDOException $e) {
 		var_dump($e->getMessage());
@@ -44,9 +67,18 @@ function bot_question(string $v) : string {
 	return $rtn;
 }
 
+/**
+ * [BRIEF]	Display the HTML content for the noBot process with the bot_question
+ * 			return 
+ * @param 	void
+ * @example noBot()
+ * @author	chriSmile0
+ * @return 	string	The HTML struct of the QandA process if the user is not identified
+ * 					Or go in the index_viewers if he asnwered previously
+*/
 function noBot() {
 	if(!!!key_exists("go",$_SESSION)) {
-		$bot_question_rep = bot_question("");
+		$bot_question_rep = bot_question();
 		return "<div id=\"NoBot\">
 			<h4>Robot cuiseur?</h4>
 			<div id=\"botQuestion\">
@@ -68,4 +100,11 @@ function noBot() {
 	return "";
 }
 // thanks to RobinWood -> digininja
+/**
+ * [BRIEF]
+ * @param 
+ * @example 
+ * @author	chriSmile0
+ * @return 
+*/
 ?>

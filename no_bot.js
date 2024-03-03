@@ -1,3 +1,10 @@
+/**
+ * @brief Write an error in the html render 
+ * @param { id }        id of a random element in a page  
+ * @param { error }     true if display error false for hide error
+ * @param { textError } The text to write in the champ.id+error field
+ * @return / 
+*/
 function writeErrorv2(id,error,textError) {
 	if(error) {
 	  var elemn = document.getElementById(id);
@@ -9,6 +16,11 @@ function writeErrorv2(id,error,textError) {
 	}
 }
   
+/**
+ * @brief Delay the bot action (faster than a precise delay @see fasterBot
+ * @param /
+ * @return /
+*/
 function fastestClick() {
 	const button = document.getElementById('NoBotBtn');
 	let elementClicked = false;
@@ -23,6 +35,11 @@ function fastestClick() {
 	  console.log("Human ? (maybe yes (answer check now!!");
 }
   
+/**
+ * @brief Display the button to answer to the question with a delay 
+ * @param /
+ * @return /
+*/
 function fasterBot() {
 	(document.getElementById('NoBotBtn')).style.display = "none";
 	const wait = setTimeout(viewButton,400);
@@ -39,12 +56,24 @@ function fasterBot() {
 }
   
 window.onload = fasterBot();
+
+/**
+ * @brief Delay the bot action (faster than a precise delay @see fasterBot
+ * @param /
+ * @return /
+ * @version 1.0 -> check to update (maybe fastest not necessary (fasterBot Maybe))
+*/
 function checkBot() { // à refaire du côté PHP pour la gestion du captcha maison 
 	var val_bot = (document.getElementById('select-bot')).value;
 	(document.getElementById('select-bot-hide')).innerText = val_bot;
 	fastestClick();
 }
 
+/**
+ * @brief A POST request for ban a user who not respond correctly in any question 
+ * @param /
+ * @return /
+*/
 function deleteSessionv2() {
 	document.getElementById('botQuestion').style.backgroundColor = "green";
 	let xmlhttp=new XMLHttpRequest()
@@ -58,6 +87,11 @@ function deleteSessionv2() {
 	xmlhttp.send("session=ban");
 }
 
+/**
+ * @brief Check the response of the question for bot protection
+ * @param e	the event 
+ * @return /
+*/
 function verifBotResponse(e) {
 	var elem = (document.getElementById('select-bot')).value;
 	var vAnswer = (elem == "oui") || (elem == "non");
