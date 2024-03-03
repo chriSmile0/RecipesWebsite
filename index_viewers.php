@@ -1,4 +1,3 @@
-<!--SECURITY NOBot here -->
 <?php require 'upload_recipe.php';?>
 <?php require 'header.php'; ?>
 <?php require '___.php';?>

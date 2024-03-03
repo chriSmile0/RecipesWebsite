@@ -16,7 +16,15 @@
 	if(check_IP($ip,1) === true) 
 		ban_page($ip);
 	
-function load_bePatient() {
+/**
+ * [BRIEF]	Add to the html page the js event to launch bePatientv2() or showForm()
+ * 			function (@see no_bot.js @@FUNCTION_NAME)
+ * @param 	void
+ * @example load_bePatient()
+ * @author	chriSmile0
+ * @return 	string 
+*/
+function load_bePatient() : string {
 	if(key_exists("go",$_SESSION)) {
 		if($_SESSION['go'] && !key_exists("wait_ok",$_SESSION)) {
 			$_SESSION['wait_ok'] = true;
@@ -31,4 +39,11 @@ function load_bePatient() {
 	}
 	return "";
 }
+/**
+ * [BRIEF]
+ * @param 
+ * @example 
+ * @author	chriSmile0
+ * @return 
+*/
 ?> 
