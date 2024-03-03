@@ -1,5 +1,5 @@
-<?php require 'header.php'; ?>
-<?php require '___.php';?>
+<?php require '../../inc/header.php'; ?>
+<?php require '../_/___.php';?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,7 +7,7 @@
     <meta name="author" content="chriSmile0">
     <meta name="description" content="Mimi Recipes">
     <meta charset="UTF-8">
-    <link href="style.css" rel="stylesheet"/>
+    <link href="../../styles/style.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" 
           rel="stylesheet">
 	<link rel="stylesheet" 
@@ -16,7 +16,7 @@
     <title>Les Recettes de Meli</title>
 </head>
 <body>
-    <?php echo no_script();?>
-    <?php echo noBot(); ?>
+    <?php echo no_script("../");?>
+    <?php echo noBot("../"); ?>
 </body>
 </html>

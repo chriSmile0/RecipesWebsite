@@ -17,6 +17,81 @@ I wanted to write recipes, with images and an interactive interface. Whether for
 - HomePage (NoBot)-> (choice between) MimiRecipes and ViewersRecipe
 
 
+## Paths 
+
+<details>
+<summary>Paths(v1)</summary>
+  
+  ```bash 
+  |db 
+  -- *.db/*.php
+  |home
+  -- *
+  |imgs
+  -- *.jpg
+  |inc
+    --
+  |meli
+  -- index.php
+  |screens
+  -- 
+  |styles
+  |subs_imgs
+  -- *.jpg/*.png
+  |viewers
+    |_ 
+      -- *.php
+    |home
+      -- index.php
+  -- *.php/*.js
+  ```
+</details>
+
+<details open>
+<summary>Paths(v2)</summary>
+<pre>
+.
+├── db
+│   ├── _database.db
+│   ├── ,database.db
+│   ├── database.db
+│   ├── db_usage.php
+│   └── upload_recipe.php
+├── home
+│   ├── index.php
+│   ├── LOVE_JS.html
+│   └── style_home.css
+├── imgs
+│   ├── banane_plantain.jpg
+│   ├── choucroute.jpg
+│   ├── manioc.jpg
+│   └── patate_douce.jpg
+├── inc
+│   ├── header.php
+│   ├── my_js.js
+│   └── ,_.php
+├── index.php
+├── meli
+│   └── index.php
+├── README.md
+├── screens
+│   └── show.webm
+├── styles
+│   └── style.css
+├── subs_imgs
+│   └── 9de5c48354a905eb46a7d4ffe5431ea0.jpg
+└── viewers
+    ├── _
+    │   ├── ___.php
+    │   └── ,,,.php
+    ├── home
+    │   └── index.php
+    ├── index.php
+    ├── no_bot.js
+    └── redirect.php
+</pre>
+</details>
+
 ### Database Managment 
 #### SQLITE3
 - In command line : 

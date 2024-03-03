@@ -44,7 +44,6 @@ function fasterBot() {
 	(document.getElementById('NoBotBtn')).style.display = "none";
 	const wait = setTimeout(viewButton,400);
 	var val_select = document.getElementById('select-bot-hide').value;
-	console.log(val_select);
 	if(val_select !== undefined)
 		console.log("YOUR VERY FASTER!! ");
 	else 
@@ -79,11 +78,10 @@ function deleteSessionv2() {
 	let xmlhttp=new XMLHttpRequest()
 	xmlhttp.onreadystatechange = function() {
 	  if((this.readyState === XMLHttpRequest.DONE) && (this.status === 200)) {
-		const reponse = JSON.parse(this.responseText);
-		console.log(reponse);
+		JSON.parse(this.responseText);
 	  };
 	}
-	xmlhttp.open("POST",",,,.php");
+	xmlhttp.open("POST","../_/,,,.php");
 	xmlhttp.send("session=ban");
 }
 
@@ -104,9 +102,8 @@ function verifBotResponse(e) {
 	  xmlhttp.onreadystatechange = function() {
 		if((this.readyState === XMLHttpRequest.DONE) && (this.status === 200)) {
 		  const reponse = JSON.parse(this.responseText);
-		  console.log(reponse);
 		  if(reponse[0] == true) {
-			window.location.assign("redirect.php");
+			window.location.assign("../redirect.php");
 			//welcomeSession();
 		  }
 		  else {
@@ -122,7 +119,7 @@ function verifBotResponse(e) {
 		  }
 		};
 	  }
-	  url = ",,,.php";
+	  url = "../_/,,,.php";
 	  xmlhttp.open("POST",url,true);
 	  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	  xmlhttp.send("q="+vQ+"&a="+elem);
@@ -139,11 +136,10 @@ function welcomeSession() {
 	let xmlhttp=new XMLHttpRequest()
 	xmlhttp.onreadystatechange = function() {
 	  if((this.readyState === XMLHttpRequest.DONE) && (this.status === 200)) {
-		const reponse = JSON.parse(this.responseText);
-		console.log(reponse);
+		JSON.parse(this.responseText);
 	  };
 	}
-	xmlhttp.open("POST",",,,.php");
+	xmlhttp.open("POST","_/,,,.php");
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("session=connected");
 }

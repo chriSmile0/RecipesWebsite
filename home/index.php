@@ -22,10 +22,10 @@
     </div>
 
     <div id="content">
-        <div id="meli" onclick="document.location.href='../index_meli.php'">
+        <div id="meli" onclick="document.location.href='../meli/'">
             <h2>Mes Recettes</h2>
         </div>
-        <div id="viewers" onclick="document.location.href='../home_viewers.php'">
+        <div id="viewers" onclick="document.location.href='../viewers/home/'">
             <h2>Vos Recettes</h2>
         </div>
     </div>

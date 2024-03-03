@@ -156,7 +156,7 @@ function display_recipe($row) {
 		$out_ingredients .= "<li>".$ingre."</li>";
 	}
 	$out_ingredients .= "</ul>";
-	$img = "<img src=\"imgs/".$row['image']."\">";
+	$img = "<img src=\"../imgs/".$row['image']."\">";
 	$descro = "<p>".$row["description"]."</p>";
 	$etapes = explode(",",$row['preparation']);
 	$out_etapes = "<h5>Étapes</h5>\n<ul>";
@@ -186,7 +186,7 @@ function display_recipe($row) {
 function display_ingredient($row) {
 	$Output = "<aside><div></div>";
 	$name = "<h4>".$row['name']."</h4>";
-	$img = "<img src=\"imgs/".$row['image']."\">";
+	$img = "<img src=\"../imgs/".$row['image']."\">";
 	$descro = "<p>".$row["description"]."</p>";
 
 	$details = "<ul class=\"details\">";

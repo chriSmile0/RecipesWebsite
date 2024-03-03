@@ -11,7 +11,7 @@
 */
 function create_connected_table() {
 	try {
-		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/,database.db');
+		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../db/,database.db');
 		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$sql = "CREATE TABLE IF NOT EXISTS Connected (
 				id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -42,7 +42,7 @@ function connected_IP() { // insert
 	$ip_v = ip_version($ip_to_add);
 	if(($ip_v !== NULL) && (!!!check_IP($ip_to_add,1))) {
 		try {
-			$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/,database.db');
+			$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../db/,database.db');
 			$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
 			$sql = "INSERT INTO Connected (ip,visits,date_time)
 			VALUES (:ip,1,datetime('now','localtime'))";
@@ -69,7 +69,7 @@ function update_visits() {
 	$ip_v = ip_version($ip_to_update);
 	if(($ip_v !== NULL) && (!!!check_IP($ip_to_update,1))) {
 		try {
-			$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/,database.db');
+			$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../db/,database.db');
 			$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql_v = "SELECT visits from Connected where ip = :ip";
 			$stmt = $bdd->prepare($sql_v, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
@@ -106,7 +106,7 @@ function update_visits() {
 */
 function create_ban_table() {
 	try {
-		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/,database.db');
+		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../db/,database.db');
 		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$sql = "CREATE TABLE IF NOT EXISTS Bans (
 				id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -134,7 +134,7 @@ function ban_IP() { // insert
 	$ip_v = ip_version($ip_to_ban);
 	if($ip_v !== NULL) {
 		try {
-			$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/,database.db');
+			$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../db/,database.db');
 			$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
 			$sql = "INSERT INTO Bans (ip)
 			VALUES (:ip)";
@@ -170,7 +170,7 @@ function ip_version(string $ip) {
 function check_IP(string $ip, int $type) : bool { // check if ip is ban 
 	if(($ip_v = ip_version($ip)) !== NULL) {
 		try {
-			$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/,database.db');
+			$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../db/,database.db');
 			$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql = "";
 			if($type == 1)

@@ -1,6 +1,6 @@
-<?php require 'upload_recipe.php';?>
-<?php require 'header.php'; ?>
-<?php require '___.php';?>
+<?php require '../db/upload_recipe.php';?>
+<?php require '../inc/header.php'; ?>
+<?php require '_/___.php';?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,7 +8,7 @@
     <meta name="author" content="chriSmile0">
     <meta name="description" content="Mimi Recipes">
     <meta charset="UTF-8">
-    <link href="style.css" rel="stylesheet"/>
+    <link href="../styles/style.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" 
           rel="stylesheet">
 	<link rel="stylesheet" 
@@ -17,7 +17,7 @@
     <title>Les Recettes de Meli</title>
 </head>
 <body>
-    <?php echo no_script();?>
+    <?php echo no_script("");?>
 
 	<h2 id="HA5">Vos Recettes</h2>
 	<article id="A2">
@@ -157,7 +157,7 @@
             <i class="fa fa-instagram" style="font-size:40px"></i>
         </a>
     </footer>
-	<script src="my_js.js">
+	<script src="../inc/my_js.js">
         (document.getElementById('A4_n')).onsubmit = function () {return veriform(document.getElementById('A4_n'))};
     </script>
     <?php echo load_bePatient(); ?>

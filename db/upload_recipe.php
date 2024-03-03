@@ -131,7 +131,7 @@ function image_upload($img) {
 	$uploaded_tmp  = $img[ 'tmp_name' ];
 
 	// Where are we going to be writing to?
-	$target_path   =  'subs_imgs/';
+	$target_path   =  '../subs_imgs/';
 	//$target_file   = basename( $uploaded_name, '.' . $uploaded_ext ) . '-';
 	$target_file_origin = $uploaded_name;
 	$target_file   =  md5( uniqid() . $uploaded_name ) . '.' . $uploaded_ext;
@@ -266,6 +266,7 @@ function update_db(array $columns_name, array $to_insert) {
 							$prepa_parse,$descro_parse,$price_parse,
 							$nbr_people_parse,$author_parse];
 			try {
+				var_dump(dirname(__FILE__));
 				$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/database.db');
 				$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
 				$sql = "INSERT INTO ViewersRecette 
@@ -320,7 +321,7 @@ function display_recipe_viewer($row) : string {
 		$out_ingredients .= "<li>".$ingre."</li>";
 	}
 	$out_ingredients .= "</ul>";
-	$img = "<img src=\"subs_imgs/".$row['image']."\">";
+	$img = "<img src=\"../subs_imgs/".$row['image']."\">";
 	$descro = "<p>".$row['description']."</p>";
 	$etapes = explode(",",$row['preparation']);
 	$out_etapes = "<h5>Étapes</h5>\n<ul>";
