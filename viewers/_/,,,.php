@@ -1,5 +1,5 @@
 <?php require_once('___.php');?>
-<?php require 'header.php'; ?>
+<?php require '../../inc/header.php'; ?>
 <?php 
 
 /**
@@ -24,7 +24,7 @@ function test_input2($data) {
 */
 function create_private_db_table() {
 	try {
-		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/_database.db');
+		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../../db/_database.db');
 		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$sql = "CREATE TABLE IF NOT EXISTS QandA (
 				id INTEGER PRIMARY KEY AUTOINCREMENT ,
@@ -50,7 +50,7 @@ function create_private_db_table() {
 */
 function insert_q_and_a(string $q, string $a) {
 	try {
-		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/_database.db');
+		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../../db/_database.db');
 		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$sql = "INSERT INTO QandA (question,answer)VALUES (:q,:a)";
 		$stmt = $bdd->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
@@ -77,7 +77,7 @@ function search_q_and_a(string $q, string $a) : array {
 		$q = test_input2($q); // to comment if use this only with php
 		$q = preg_replace(['/_/'],['\''],$q);
 		$q = test_input2($q); // to comment if use this only with php
-		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/_database.db');
+		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../../db/_database.db');
 		$sql = "SELECT * from QandA WHERE question = :q ";
 		$stmt = $bdd->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
 		$stmt->execute([':q'=> $q]);
@@ -85,14 +85,14 @@ function search_q_and_a(string $q, string $a) : array {
 		if(sizeof($res) == 1) {
 			if($a == $res[0]['answer']) {
 				$_SESSION['go'] = true;
-				return [true,NULL,$_SESSION];
+				return [true,NULL];
 			}
 			else {
 				if(key_exists("cpt_question",$_SESSION))
 					$_SESSION['cpt_question'] = $_SESSION['cpt_question'] - 1;
 				else 
 					$_SESSION['cpt_question'] = 2;
-				return [false,$_SESSION['cpt_question'],bot_question(),$_SESSION];
+				return [false,$_SESSION['cpt_question'],bot_question()];
 			}
 		}
 		else {

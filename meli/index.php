@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<?php require 'db_usage.php'; ?>
+<?php require '../db/db_usage.php'; ?>
 <html lang="fr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="chriSmile0">
     <meta name="description" content="Mimi Recipes">
     <meta charset="UTF-8">
-    <link href="style.css" rel="stylesheet"/>
+    <link href="../styles/style.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" 
           rel="stylesheet">
 	<link rel="stylesheet" 
@@ -16,8 +16,9 @@
 </head>
 
 <body>
-    <?php include '___.php';?>
-    <?php echo no_script();?>
+    <noscript id="js-check-container">
+	    <meta http-equiv="refresh" content="0; url=../home/LOVE_JS.html\"/>
+	</noscript>
 	<header id="H">
         <h2>Les Recettes de Meli</h2>
 	</header>
@@ -28,7 +29,7 @@
             <div class="container">
 				<aside>
 					<h4>Le poulet Yassa</h4>
-					<img src="imgs/choucroute.jpg">
+					<img src="../imgs/choucroute.jpg">
 					<p>
 						Ce plat sénégalais regorge de richesse et d'arômes
 						car on y retrouvent du citron, de la moutarde, des oignons et des olives
@@ -57,9 +58,6 @@
             <i id="top_a_i" class="material-icons">expand_less</i>
         </a>
     </div>
-    <div>
-        <span id="hidingFormText">C</span>
-    </div>
 
 	<footer>
         <h3 style="padding-bottom:0px;margin-bottom:0px;">Mes Réseaux Sociaux</h3>
@@ -77,6 +75,6 @@
             <i class="fa fa-instagram" style="font-size:40px"></i>
         </a>
     </footer>
-	<script src="my_js.js"></script>
+	<script src="../inc/my_js.js"></script>
 </body>
 </html>

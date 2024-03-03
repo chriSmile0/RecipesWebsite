@@ -3,14 +3,14 @@ $questions_bans_id = [];
 
 /**
  * [BRIEF]	Generate no_script element for say to user/developper to activate JS
- * @param 	void
- * @example no_script()
+ * @param 	string	$add_path	the path to add in the URL
+ * @example no_script("../")
  * @author	chriSmile0
  * @return 	<noscript> tag with redirect URL
 */
-function no_script() : string {
+function no_script(string $add_path) : string {
 	return "<noscript id=\"js-check-container\">
-	<meta http-equiv=\"refresh\" content=\"0; url=home/LOVE_JS.html\" />
+	<meta http-equiv=\"refresh\" content=\"0; url=$add_path"."../home/LOVE_JS.html\" />
 	</noscript>\n";
 }
 
@@ -33,7 +33,7 @@ function no_script() : string {
 function bot_question() : string {
 	$rtn = "";
 	try {
-		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/_database.db');
+		$bdd = new PDO('sqlite:' . dirname(__FILE__) . '/../../db/_database.db');
 		$sql = "SELECT question from QandA where id = :id";
 		$sql_global = "SELECT max(id) from QandA";
 		$id = 1;
@@ -70,13 +70,13 @@ function bot_question() : string {
 /**
  * [BRIEF]	Display the HTML content for the noBot process with the bot_question
  * 			return 
- * @param 	void
- * @example noBot()
+ * @param 	string	$add_path	the path to add in the URL
+ * @example noBot("../")
  * @author	chriSmile0
  * @return 	string	The HTML struct of the QandA process if the user is not identified
  * 					Or go in the index_viewers if he asnwered previously
 */
-function noBot() {
+function noBot(string $add_path) {
 	if(!!!key_exists("go",$_SESSION)) {
 		$bot_question_rep = bot_question();
 		return "<div id=\"NoBot\">
@@ -92,10 +92,10 @@ function noBot() {
 			</div>
 			<span id=\"select-bot-hide\"></span>
 		</div>
-		<script src=\"no_bot.js\"></script>";
+		<script src=\"$add_path"."no_bot.js\"></script>";
 	}
 	else {
-		header("Location: index_viewers.php");
+		header("Location: ../");
 	}
 	return "";
 }
